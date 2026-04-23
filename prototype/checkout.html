@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — Arctic Monkeys</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-brand">ticket<span>hub</span></div>
+    <div class="nav-links">
+      <a href="seats.html">← Back</a>
+    </div>
+    <div class="nav-actions">
+      <div class="nav-avatar"></div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <section class="checkout">
+      <div>
+        <h1>Checkout</h1>
+        <p class="subhead">Complete your ticket purchase in 3 steps</p>
+
+        <div class="hold-timer">
+          <div>
+            <strong>7:32</strong>
+            <div style="font-size: 12px; margin-top: 2px;">Hold time remaining</div>
+          </div>
+          <div style="font-size: 12px; opacity: 0.8;">
+            Seats reserved. Reserve a slot in the payment queue.
+          </div>
+        </div>
+
+        <!-- STEP 1: Contact -->
+        <div class="panel">
+          <h3><span class="step-num">1</span> Contact Info</h3>
+          <div class="field">
+            <label>Email</label>
+            <input type="email" placeholder="you@example.com" value="alex@example.com">
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>First Name</label>
+              <input type="text" placeholder="Alex" value="Alex">
+            </div>
+            <div class="field">
+              <label>Last Name</label>
+              <input type="text" placeholder="Turner" value="Turner">
+            </div>
+          </div>
+          <div class="field">
+            <label>Phone</label>
+            <input type="tel" placeholder="+1 (555) 123-4567" value="+1 (555) 123-4567">
+          </div>
+        </div>
+
+        <!-- STEP 2: Billing -->
+        <div class="panel">
+          <h3><span class="step-num">2</span> Billing Address</h3>
+          <div class="field">
+            <label>Street</label>
+            <input type="text" placeholder="123 Main Street" value="254 5th Avenue">
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>City</label>
+              <input type="text" placeholder="New York" value="New York">
+            </div>
+            <div class="field">
+              <label>State</label>
+              <input type="text" placeholder="NY" value="NY" style="max-width: 100px;">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>ZIP Code</label>
+              <input type="text" placeholder="10001" value="10001" style="max-width: 140px;">
+            </div>
+            <div class="field">
+              <label>Country</label>
+              <input type="text" placeholder="USA" value="USA">
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3: Payment -->
+        <div class="panel">
+          <h3><span class="step-num">3</span> Payment Method</h3>
+          <div class="field">
+            <label>Card Holder Name</label>
+            <input type="text" placeholder="Alex Turner" value="Alex Turner">
+          </div>
+          <div class="field">
+            <label>Card Number</label>
+            <input type="text" placeholder="1234 5678 9012 3456" value="4242 4242 4242 4242">
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>Expiry</label>
+              <input type="text" placeholder="MM/YY" value="12/27">
+            </div>
+            <div class="field">
+              <label>CVC</label>
+              <input type="text" placeholder="123" value="123">
+            </div>
+          </div>
+          <button class="btn btn-primary btn-block btn-lg" onclick="completeOrder()" style="margin-top: 20px;">
+            Complete Purchase
+          </button>
+        </div>
+      </div>
+
+      <div class="order-summary">
+        <div class="order-img"></div>
+        <div class="order-title">Arctic Monkeys</div>
+        <div class="order-meta">
+          Wed, Jun 12 · 8:00 PM<br>
+          Madison Square Garden
+        </div>
+
+        <div class="order-list">
+          <div class="summary-row">
+            <span>2x Floor</span>
+            <span>$378</span>
+          </div>
+          <div class="summary-row">
+            <span>1x Lower Bowl</span>
+            <span>$129</span>
+          </div>
+          <div class="summary-row" style="border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 12px;">
+            <span>Subtotal</span>
+            <span>$507</span>
+          </div>
+          <div class="summary-row">
+            <span>Service Fee (15%)</span>
+            <span>$76</span>
+          </div>
+          <div class="summary-row">
+            <span>Payment Processing</span>
+            <span>$2</span>
+          </div>
+          <div class="summary-row total">
+            <span>Total</span>
+            <span>$585</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    Your payment is encrypted and secure. We never store full card details.
+  </footer>
+
+  <script>
+    function completeOrder() {
+      window.location.href = 'ticket.html';
+    }
+
+    // Animate hold timer
+    let remaining = 452; // 7:32 in seconds
+    setInterval(() => {
+      remaining--;
+      if (remaining < 0) remaining = 452;
+      const mins = Math.floor(remaining / 60);
+      const secs = remaining % 60;
+      document.querySelector('.hold-timer strong').textContent =
+        mins + ':' + (secs < 10 ? '0' : '') + secs;
+    }, 1000);
+  </script>
+</body>
+</html>

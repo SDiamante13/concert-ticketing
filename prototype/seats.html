@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Seats — Arctic Monkeys</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-brand">ticket<span>hub</span></div>
+    <div class="nav-links">
+      <a href="event.html">← Back</a>
+    </div>
+    <div class="nav-actions">
+      <div class="nav-avatar"></div>
+    </div>
+  </nav>
+
+  <div class="seats-layout">
+    <div class="seats-map">
+      <div class="stage">🎤 Stage</div>
+
+      <div class="seats-venue">
+        <div class="section-row">
+          <div class="sec floor" data-section="FLOOR-L">
+            Floor Left
+            <small>$189</small>
+          </div>
+          <div class="sec floor" data-section="FLOOR-C">
+            Floor Center
+            <small>$189</small>
+          </div>
+          <div class="sec floor" data-section="FLOOR-R">
+            Floor Right
+            <small>$189</small>
+          </div>
+        </div>
+
+        <div class="section-row">
+          <div class="sec vip" data-section="VIP-L">
+            VIP L1
+            <small>$249</small>
+          </div>
+          <div class="sec vip" data-section="VIP-L2">
+            VIP L2
+            <small>$249</small>
+          </div>
+          <div class="sec vip" data-section="VIP-R">
+            VIP R1
+            <small>$249</small>
+          </div>
+        </div>
+
+        <div class="section-row">
+          <div class="sec lower" data-section="LOWER-L">
+            Lower L
+            <small>$129</small>
+          </div>
+          <div class="sec lower" data-section="LOWER-C">
+            Lower C
+            <small>$129</small>
+          </div>
+          <div class="sec lower" data-section="LOWER-R">
+            Lower R
+            <small>$129</small>
+          </div>
+        </div>
+
+        <div class="section-row">
+          <div class="sec upper" data-section="UPPER-L">
+            Upper L
+            <small>$89</small>
+          </div>
+          <div class="sec upper" data-section="UPPER-C">
+            Upper C
+            <small>$89</small>
+          </div>
+          <div class="sec upper" data-section="UPPER-R">
+            Upper R
+            <small>$89</small>
+          </div>
+        </div>
+
+        <div class="section-row">
+          <div class="sec sold" disabled>
+            Nosebleed L
+            <small>SOLD OUT</small>
+          </div>
+          <div class="sec sold" disabled>
+            Nosebleed C
+            <small>SOLD OUT</small>
+          </div>
+          <div class="sec sold" disabled>
+            Nosebleed R
+            <small>SOLD OUT</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="legend">
+        <div><span class="legend-dot floor"></span>Floor</div>
+        <div><span class="legend-dot vip"></span>VIP</div>
+        <div><span class="legend-dot lower"></span>Lower Bowl</div>
+        <div><span class="legend-dot upper"></span>Upper Bowl</div>
+        <div><span class="legend-dot sold"></span>Sold Out</div>
+      </div>
+    </div>
+
+    <div class="seats-sidebar">
+      <div class="event-mini">Arctic Monkeys</div>
+      <h2>Select Section</h2>
+
+      <div id="selected-section"></div>
+
+      <div class="qty-row">
+        <span>Floor Tickets</span>
+        <div class="qty-ctrl">
+          <button onclick="decQty('floor')">−</button>
+          <span id="floor-qty">0</span>
+          <button onclick="incQty('floor')">+</button>
+        </div>
+      </div>
+
+      <div class="qty-row">
+        <span>VIP Tickets</span>
+        <div class="qty-ctrl">
+          <button onclick="decQty('vip')">−</button>
+          <span id="vip-qty">0</span>
+          <button onclick="incQty('vip')">+</button>
+        </div>
+      </div>
+
+      <div class="qty-row">
+        <span>Lower Bowl</span>
+        <div class="qty-ctrl">
+          <button onclick="decQty('lower')">−</button>
+          <span id="lower-qty">0</span>
+          <button onclick="incQty('lower')">+</button>
+        </div>
+      </div>
+
+      <div class="qty-row">
+        <span>Upper Bowl</span>
+        <div class="qty-ctrl">
+          <button onclick="decQty('upper')">−</button>
+          <span id="upper-qty">0</span>
+          <button onclick="incQty('upper')">+</button>
+        </div>
+      </div>
+
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span id="subtotal">$0</span>
+      </div>
+      <div class="summary-row">
+        <span>Fees</span>
+        <span id="fees">$0</span>
+      </div>
+      <div class="summary-row total">
+        <span>Total</span>
+        <span id="total">$0</span>
+      </div>
+
+      <div class="sidebar-footer">
+        <button class="btn btn-primary btn-block btn-lg" onclick="gotoCheckout()">
+          Continue to Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const prices = { floor: 189, vip: 249, lower: 129, upper: 89 };
+    const quantities = { floor: 0, vip: 0, lower: 0, upper: 0 };
+
+    function incQty(tier) {
+      if (quantities[tier] < 6) quantities[tier]++;
+      update();
+    }
+
+    function decQty(tier) {
+      if (quantities[tier] > 0) quantities[tier]--;
+      update();
+    }
+
+    function update() {
+      Object.keys(quantities).forEach(tier => {
+        document.getElementById(tier + '-qty').textContent = quantities[tier];
+      });
+      let subtotal = 0;
+      Object.keys(quantities).forEach(tier => {
+        subtotal += quantities[tier] * prices[tier];
+      });
+      const fees = Math.round(subtotal * 0.15);
+      const total = subtotal + fees;
+      document.getElementById('subtotal').textContent = '$' + subtotal.toLocaleString();
+      document.getElementById('fees').textContent = '$' + fees.toLocaleString();
+      document.getElementById('total').textContent = '$' + total.toLocaleString();
+    }
+
+    document.querySelectorAll('.sec:not(.sold)').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.sec.selected').forEach(s => s.classList.remove('selected'));
+        this.classList.add('selected');
+        const section = this.getAttribute('data-section');
+        const tier = section.split('-')[0].toLowerCase();
+        document.getElementById('selected-section').innerHTML = `<strong style="color: #fff; display: block; margin-bottom: 14px;">Section: ${section}</strong>`;
+      });
+    });
+
+    function gotoCheckout() {
+      const total = Object.keys(quantities).reduce((sum, tier) => sum + quantities[tier], 0);
+      if (total === 0) {
+        alert('Please select at least one ticket');
+        return;
+      }
+      window.location.href = 'checkout.html';
+    }
+  </script>
+</body>
+</html>
