@@ -34,3 +34,5 @@
 * early days XP speeding up tests was a thing, there are similarities with speeding up prompting loop
 * prompt planning poker and retry when it took long was great
 * doing this repeatedly will help identify best practices around rolesm, actions and ways of working in general
+
+![alt text](retro-2.png)
