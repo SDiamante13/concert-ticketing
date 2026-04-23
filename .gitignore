@@ -1,2 +1,4 @@
 .idea/
 .nwave/
+.DS_Store
+.gitignore
