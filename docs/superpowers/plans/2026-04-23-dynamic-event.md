@@ -46,8 +46,8 @@ const concerts = {
     ],
     tiers: [
       { name: 'Floor', description: 'Pit access', price: 189, soldOut: false },
-      { name: 'Lower Bowl', description: 'Rows A–L', price: 129, soldOut: false },
-      { name: 'Upper Bowl', description: 'Rows 1–25', price: 89, soldOut: false },
+      { name: 'Lower Bowl', description: 'Rows A-L', price: 129, soldOut: false },
+      { name: 'Upper Bowl', description: 'Rows 1-25', price: 89, soldOut: false },
       { name: 'Nosebleeds', description: 'Rows 26+', price: 54, soldOut: false },
       { name: 'VIP Package', description: 'Meet & greet', price: 399, soldOut: true }
     ]
@@ -77,8 +77,8 @@ const concerts = {
     ],
     tiers: [
       { name: 'Floor', description: 'Pit access', price: 225, soldOut: false },
-      { name: 'Lower Bowl', description: 'Rows A–M', price: 145, soldOut: false },
-      { name: 'Upper Bowl', description: 'Rows 1–30', price: 105, soldOut: false },
+      { name: 'Lower Bowl', description: 'Rows A-M', price: 145, soldOut: false },
+      { name: 'Upper Bowl', description: 'Rows 1-30', price: 105, soldOut: false },
       { name: 'Balcony', description: 'Premium sightlines', price: 125, soldOut: false },
       { name: 'VIP Package', description: 'Meet & greet + merchandise', price: 450, soldOut: false }
     ]
@@ -112,12 +112,12 @@ In `event.html`, add this line inside the `<head>` tag after the styles.css link
 
 Change the `<title>` tag from:
 ```html
-<title>Arctic Monkeys — June 12 @ MSG</title>
+<title>Arctic Monkeys - June 12 @ MSG</title>
 ```
 
 to:
 ```html
-<title id="page-title">Arctic Monkeys — June 12 @ MSG</title>
+<title id="page-title">Arctic Monkeys - June 12 @ MSG</title>
 ```
 
 - [ ] **Step 3: Update hero section to use data binding**
@@ -131,7 +131,7 @@ Replace the hardcoded `.event-hero-inner` section:
   <div class="meta-row">
     <div>
       <div class="label">Date & Time</div>
-      <strong id="meta-datetime">Wed, Jun 12 · 8:00 PM</strong>
+      <strong id="meta-datetime">Wed, Jun 12 � 8:00 PM</strong>
     </div>
     <div>
       <div class="label">Venue</div>
@@ -200,14 +200,14 @@ Replace the `.tier-card` divs with:
     <div class="tier-row">
       <div>
         <div class="name">Lower Bowl</div>
-        <div class="sub">Rows A–L</div>
+        <div class="sub">Rows A-L</div>
       </div>
       <div class="price">$129</div>
     </div>
     <div class="tier-row">
       <div>
         <div class="name">Upper Bowl</div>
-        <div class="sub">Rows 1–25</div>
+        <div class="sub">Rows 1-25</div>
       </div>
       <div class="price">$89</div>
     </div>
@@ -254,12 +254,12 @@ Replace the script at the bottom of the file (the one that listens to `.btn` cli
     }
 
     // Update title
-    document.getElementById('page-title').textContent = `${concert.artist} — ${concert.date} @ ${concert.venue.split(' ')[0]}`;
+    document.getElementById('page-title').textContent = `${concert.artist} - ${concert.date} @ ${concert.venue.split(' ')[0]}`;
 
     // Update hero section
     document.getElementById('hero-kicker').textContent = concert.kicker;
     document.getElementById('hero-artist').textContent = concert.artist;
-    document.getElementById('meta-datetime').textContent = `${concert.date} · ${concert.time}`;
+    document.getElementById('meta-datetime').textContent = `${concert.date} � ${concert.time}`;
     document.getElementById('meta-venue').textContent = concert.venue;
     document.getElementById('meta-city').textContent = concert.city;
 
@@ -368,11 +368,11 @@ Expected: Commit succeeds with message confirming 3 files changed.
 ## Plan Review
 
 **Spec coverage:**
-- ✅ Create data.js with 2 concert objects (Arctic Monkeys + Dua Lipa)
-- ✅ Modify event.html to read `?id=` query parameter and populate dynamically
-- ✅ Modify index.html to link first two cards with query parameters
-- ✅ Other 6 cards remain unchanged, linking to static event.html
+- [X} Create data.js with 2 concert objects (Arctic Monkeys + Dua Lipa)
+- [X} Modify event.html to read `?id=` query parameter and populate dynamically
+- [X} Modify index.html to link first two cards with query parameters
+- [X} Other 6 cards remain unchanged, linking to static event.html
 
-**Placeholder scan:** None found — all code is complete and ready to execute.
+**Placeholder scan:** None found - all code is complete and ready to execute.
 
 **Type consistency:** Concert data structure consistent across all tasks (id, artist, date, time, venue, city, bio, setlist, tiers).
